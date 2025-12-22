@@ -1,7 +1,8 @@
-.PHONY: help build install update remove clean dev
+.PHONY: help build install update remove clean dev build-extension push-extension
 
 EXTENSION_NAME = ajeetraina777/surrealdb-docker-extension
-VERSION = latest
+VERSION = 1.0.0
+DOCKER_HUB_USERNAME = ajeetraina777
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'
@@ -11,6 +12,14 @@ help: ## Show this help message
 
 build: ## Build the Docker extension
 	docker build -t $(EXTENSION_NAME):$(VERSION) .
+
+build-extension: ## Build extension for multi-platform (amd64, arm64)
+	docker buildx build --platform linux/amd64,linux/arm64 -t $(EXTENSION_NAME):$(VERSION) --push .
+
+push-extension: ## Push extension to Docker Hub (requires login)
+	@echo "Pushing $(EXTENSION_NAME):$(VERSION) to Docker Hub..."
+	@echo "Make sure you're logged in: docker login"
+	docker push $(EXTENSION_NAME):$(VERSION)
 
 install: build ## Build and install the extension
 	docker extension install $(EXTENSION_NAME):$(VERSION)
@@ -34,3 +43,7 @@ validate: ## Validate the extension
 
 logs: ## Show extension logs
 	docker extension dev logs $(EXTENSION_NAME)
+
+docker-login: ## Login to Docker Hub
+	@echo "Logging in to Docker Hub as $(DOCKER_HUB_USERNAME)..."
+	docker login -u $(DOCKER_HUB_USERNAME)

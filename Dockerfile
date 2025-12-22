@@ -1,7 +1,7 @@
 # syntax=docker/dockerfile:1
 
 # Build the UI
-FROM node:20-alpine as client-builder  
+FROM node:20-alpine AS client-builder  
 WORKDIR /ui
 COPY ui/package.json /ui/package.json
 COPY ui/package-lock.json /ui/package-lock.json
