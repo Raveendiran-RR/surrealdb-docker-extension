@@ -14,7 +14,7 @@ A Docker Desktop extension for managing SurrealDB databases with an intuitive UI
 
 ## Prerequisites
 
-- Docker Desktop 4.8.0 or later
+- Docker Desktop 4.55.0 or later
 - Docker Engine 20.10.0 or later
 
 ## Installation
