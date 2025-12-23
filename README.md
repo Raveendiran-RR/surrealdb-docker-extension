@@ -12,6 +12,27 @@ A Docker Desktop extension for managing SurrealDB databases with an intuitive UI
 - ⚙️ **Configurable Settings**: Customize connection parameters and preferences
 - 🎨 **Modern UI**: Built with Material-UI for a polished user experience
 
+## Extension Architecture 
+```mermaid
+graph TB
+    A[Docker Desktop] --> B[SurrealDB Extension]
+    B --> C[Database Manager]
+    B --> D[Query Editor]
+    B --> E[Data Explorer]
+    B --> F[Settings Panel]
+    
+    C --> G[SurrealDB Container]
+    D --> G
+    E --> G
+    
+    G --> H[(SurrealDB Database)]
+    
+    style A fill:#2496ED,color:#fff
+    style B fill:#FF00A0,color:#fff
+    style G fill:#9945FF,color:#fff
+    style H fill:#00D4AA,color:#fff
+```
+
 ## Prerequisites
 
 - Docker Desktop 4.55.0 or later
@@ -54,6 +75,31 @@ A Docker Desktop extension for managing SurrealDB databases with an intuitive UI
 4. In the "Database Manager" tab, click "Start"
 5. Wait for the database to initialize
 
+### How the data flows :
+```mermaid
+sequenceDiagram
+    participant User
+    participant UI as React UI
+    participant Docker as Docker SDK
+    participant SurrealDB as SurrealDB Container
+    participant DB as Database
+    
+    User->>UI: Click "Start Database"
+    UI->>Docker: Execute docker-compose up
+    Docker->>SurrealDB: Start container (port 8000)
+    SurrealDB->>DB: Initialize database
+    DB-->>SurrealDB: Ready
+    SurrealDB-->>UI: Status: Running ✓
+    UI-->>User: Show "Connected"
+    
+    User->>UI: Write query in editor
+    UI->>SurrealDB: HTTP POST /sql
+    SurrealDB->>DB: Execute SurrealQL
+    DB-->>SurrealDB: Return results
+    SurrealDB-->>UI: JSON response
+    UI-->>User: Display formatted data
+```
+
 ### Running Queries
 
 1. Switch to the "Query Editor" tab
@@ -87,6 +133,32 @@ DELETE users WHERE name = "John Doe";
 1. Go to the "Settings" tab
 2. Modify connection parameters as needed
 3. Click "Save Settings"
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Settings as Settings Panel
+    participant Storage as LocalStorage
+    participant API as SurrealDB API
+    participant DB as Database
+    
+    User->>Settings: Enter credentials
+    Settings->>Storage: Save encrypted config
+    
+    User->>API: Execute query
+    API->>Storage: Retrieve credentials
+    Storage-->>API: root:root (Base64)
+    API->>API: Add Authorization header
+    API->>DB: Authenticated request
+    
+    alt Valid Credentials
+        DB-->>API: Success + Data
+        API-->>User: Display results
+    else Invalid Credentials
+        DB-->>API: 401 Unauthorized
+        API-->>User: Show error + redirect to Settings
+    end
+```
 
 ## Default Configuration
 
