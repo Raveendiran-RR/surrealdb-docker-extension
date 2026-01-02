@@ -5,6 +5,7 @@ import {
   Tab,
   Tabs,
   Paper,
+  Typography,
 } from '@mui/material';
 import Surrealist from './components/Surrealist';
 import Help from './components/Help';
@@ -43,6 +44,11 @@ export function App() {
     <Container maxWidth="xl" sx={{ p: 0, height: '100vh' }}>
       <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
         <Paper sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+          <Box sx={{ px: 2, pt: 2, pb: 1, flexShrink: 0 }}>
+            <Typography variant="h5" component="h1" fontWeight="bold">
+              SurrealDB Extension
+            </Typography>
+          </Box>
           <Tabs
             value={tabValue}
             onChange={handleTabChange}

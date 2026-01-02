@@ -5,14 +5,22 @@ import {
   Paper,
   Divider,
   Link,
+  Button,
 } from '@mui/material';
+import { createDockerDesktopClient } from '@docker/extension-api-client';
 
 const Help: React.FC = () => {
+  const ddClient = createDockerDesktopClient();
+
+  const openExternalLink = (url: string) => {
+    ddClient.host.openExternal(url);
+  };
+
   return (
     <Box
       sx={{
         width: '100%',
-        height: 'calc(100vh - 200px)',
+        height: '100%',
         overflow: 'auto',
         p: 2,
       }}
@@ -25,30 +33,17 @@ const Help: React.FC = () => {
         <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
           Video Tutorial
         </Typography>
-        <Box
-          sx={{
-            position: 'relative',
-            paddingBottom: '56.25%',
-            height: 0,
-            overflow: 'hidden',
-            maxWidth: '100%',
-          }}
+        <Typography variant="body2" paragraph>
+          Watch the SurrealDB Introduction video to learn about the database features and capabilities.
+        </Typography>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => openExternalLink('https://www.youtube.com/watch?v=C7WFwgDRStM')}
+          sx={{ mt: 1 }}
         >
-          <iframe
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '100%',
-            }}
-            src="https://www.youtube.com/embed/C7WFwgDRStM"
-            title="SurrealDB Introduction"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </Box>
+          Watch on YouTube
+        </Button>
       </Paper>
 
       <Paper sx={{ p: 2, mb: 2 }}>
@@ -101,21 +96,21 @@ const Help: React.FC = () => {
         <Typography variant="body2" fontWeight="bold" sx={{ mt: 2 }}>
           1. Select All Products
         </Typography>
-        <Paper sx={{ p: 1, bgcolor: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
+        <Paper sx={{ p: 1, bgcolor: 'grey.900', color: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
           SELECT * FROM product;
         </Paper>
 
         <Typography variant="body2" fontWeight="bold" sx={{ mt: 2 }}>
           2. Full-Text Search in Reviews
         </Typography>
-        <Paper sx={{ p: 1, bgcolor: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
+        <Paper sx={{ p: 1, bgcolor: 'grey.900', color: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
           SELECT -&gt;product.name, review_text FROM review WHERE review_text @@ 'wearing nonstop';
         </Paper>
 
         <Typography variant="body2" fontWeight="bold" sx={{ mt: 2 }}>
           3. Create a New Product
         </Typography>
-        <Paper sx={{ p: 1, bgcolor: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
+        <Paper sx={{ p: 1, bgcolor: 'grey.900', color: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
           CREATE product CONTENT &#123;{'\n'}
           &nbsp;&nbsp;name: "My Product",{'\n'}
           &nbsp;&nbsp;price: 29.99,{'\n'}
@@ -126,21 +121,21 @@ const Help: React.FC = () => {
         <Typography variant="body2" fontWeight="bold" sx={{ mt: 2 }}>
           4. Update Product Price
         </Typography>
-        <Paper sx={{ p: 1, bgcolor: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
+        <Paper sx={{ p: 1, bgcolor: 'grey.900', color: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
           UPDATE product SET price = 24.99 WHERE name = "My Product";
         </Paper>
 
         <Typography variant="body2" fontWeight="bold" sx={{ mt: 2 }}>
           5. Graph Traversal - Find Related Products
         </Typography>
-        <Paper sx={{ p: 1, bgcolor: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
+        <Paper sx={{ p: 1, bgcolor: 'grey.900', color: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
           SELECT * FROM product WHERE id = product:1 FETCH -&gt;review-&gt;customer;
         </Paper>
 
         <Typography variant="body2" fontWeight="bold" sx={{ mt: 2 }}>
           6. Aggregation Query
         </Typography>
-        <Paper sx={{ p: 1, bgcolor: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
+        <Paper sx={{ p: 1, bgcolor: 'grey.900', color: 'grey.100', mt: 1, fontFamily: 'monospace', fontSize: '0.85rem' }}>
           SELECT count() AS total_products, math::mean(price) AS avg_price FROM product;
         </Paper>
       </Paper>
@@ -177,22 +172,42 @@ const Help: React.FC = () => {
         </Typography>
         <Box component="ul">
           <li>
-            <Link href="https://surrealdb.com/docs" target="_blank" rel="noopener">
+            <Link
+              component="button"
+              variant="body2"
+              onClick={() => openExternalLink('https://surrealdb.com/docs')}
+              sx={{ cursor: 'pointer', textAlign: 'left' }}
+            >
               Official Documentation
             </Link>
           </li>
           <li>
-            <Link href="https://surrealdb.com/docs/surrealql" target="_blank" rel="noopener">
+            <Link
+              component="button"
+              variant="body2"
+              onClick={() => openExternalLink('https://surrealdb.com/docs/surrealql')}
+              sx={{ cursor: 'pointer', textAlign: 'left' }}
+            >
               SurrealQL Language Guide
             </Link>
           </li>
           <li>
-            <Link href="https://surrealdb.com/docs/surrealql/demo" target="_blank" rel="noopener">
+            <Link
+              component="button"
+              variant="body2"
+              onClick={() => openExternalLink('https://surrealdb.com/docs/surrealql/demo')}
+              sx={{ cursor: 'pointer', textAlign: 'left' }}
+            >
               Demo Data Documentation
             </Link>
           </li>
           <li>
-            <Link href="https://datasets.surrealdb.com/" target="_blank" rel="noopener">
+            <Link
+              component="button"
+              variant="body2"
+              onClick={() => openExternalLink('https://datasets.surrealdb.com/')}
+              sx={{ cursor: 'pointer', textAlign: 'left' }}
+            >
               Download Demo Datasets
             </Link>
           </li>
