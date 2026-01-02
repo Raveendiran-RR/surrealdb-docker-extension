@@ -6,8 +6,10 @@ const Surrealist: React.FC = () => {
     <Box
       sx={{
         width: '100%',
-        height: 'calc(100vh - 200px)',
-        overflow: 'auto',
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        overflow: 'hidden',
         border: 'none',
       }}
     >
@@ -17,6 +19,7 @@ const Surrealist: React.FC = () => {
           width: '100%',
           height: '100%',
           border: 'none',
+          display: 'block',
         }}
         title="Surrealist GUI"
       />

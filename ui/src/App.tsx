@@ -24,9 +24,10 @@ function TabPanel(props: TabPanelProps) {
       hidden={value !== index}
       id={`tabpanel-${index}`}
       aria-labelledby={`tab-${index}`}
+      style={{ height: '100%', display: value === index ? 'flex' : 'none', flexDirection: 'column' }}
       {...other}
     >
-      {value === index && <Box>{children}</Box>}
+      {value === index && <Box sx={{ height: '100%', width: '100%' }}>{children}</Box>}
     </div>
   );
 }
@@ -39,20 +40,20 @@ export function App() {
   };
 
   return (
-    <Container maxWidth="xl" sx={{ p: 1 }}>
-      <Box sx={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-        <Paper sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column' }}>
+    <Container maxWidth="xl" sx={{ p: 0, height: '100vh' }}>
+      <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <Paper sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
           <Tabs
             value={tabValue}
             onChange={handleTabChange}
             aria-label="SurrealDB tabs"
-            sx={{ minHeight: '40px', '& .MuiTab-root': { minHeight: '40px', fontSize: '0.85rem' } }}
+            sx={{ minHeight: '40px', '& .MuiTab-root': { minHeight: '40px', fontSize: '0.85rem' }, flexShrink: 0 }}
           >
             <Tab label="Surrealist" />
             <Tab label="Help" />
           </Tabs>
 
-          <Box sx={{ flexGrow: 1, overflow: 'hidden' }}>
+          <Box sx={{ flexGrow: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column' }}>
             <TabPanel value={tabValue} index={0}>
               <Surrealist />
             </TabPanel>
