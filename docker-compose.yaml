@@ -14,5 +14,29 @@ services:
       com.docker.desktop.extension: "true"
       com.docker.desktop.extension.name: "SurrealDB"
 
+  surrealist:
+    image: surrealdb/surrealist:latest
+    ports:
+      - "8001:8080"
+    depends_on:
+      - surrealdb
+    labels:
+      com.docker.desktop.extension: "true"
+
+  demo-data-loader:
+    image: alpine:latest
+    depends_on:
+      - surrealdb
+    command: >
+      sh -c "
+      apk add --no-cache curl &&
+      sleep 10 &&
+      wget -O /tmp/demo.surql https://datasets.surrealdb.com/surreal-deal-store-mini.surql &&
+      curl -X POST http://surrealdb:8000/import -H 'Content-Type: application/octet-stream' -H 'NS: test' -H 'DB: test' -u root:root --data-binary @/tmp/demo.surql || true
+      "
+    restart: "no"
+    labels:
+      com.docker.desktop.extension: "true"
+
 volumes:
   surrealdb_data:

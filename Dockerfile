@@ -15,15 +15,17 @@ RUN npm run build
 FROM alpine:3.18
 LABEL org.opencontainers.image.title="SurrealDB" \
     org.opencontainers.image.description="A Docker Desktop extension for managing SurrealDB databases" \
-    org.opencontainers.image.vendor="Raveendiran RR" \
+    org.opencontainers.image.vendor=" Raveendiran RR" \
     com.docker.desktop.extension.api.version="0.3.3" \
     com.docker.desktop.extension.icon="https://raw.githubusercontent.com/Raveendiran-RR/surrealdb-docker-extension/main/surrealdb.svg" \
     com.docker.extension.screenshots='[{"alt":"SurrealDB Docker Extension - Main Dashboard","url":"https://raw.githubusercontent.com/Raveendiran-RR/surrealdb-docker-extension/main/screenshots/surrealist_docker_extension.png"}]' \
     com.docker.extension.detailed-description="SurrealDB is a Multi-Model database that combines SQL and NoSQL capabilities in one place. This extension helps you experiment with SurrealDB on Docker Desktop." \
     com.docker.extension.publisher-url="https://github.com/Raveendiran-RR" \
     com.docker.extension.additional-urls='[{"title":"SurrealDB Website","url":"https://surrealdb.com/"},{"title":"Documentation","url":"https://surrealdb.com/docs/surrealdb"},{"title":"Source Code","url":"https://github.com/Raveendiran-RR/surrealdb-docker-extension"}]' \
-    com.docker.extension.categories="Database" \
-    com.docker.extension.changelog="<ul><li>Initial release with SurrealDB Extension</li><li>Added comprehensive Help tab with tutorials</li></ul>"
+    com.docker.extension.categories="DATABASES & STORAGE" \
+    com.docker.extension.changelog="<ul><li>Initial release with SurrealDB Extension</li><li>Added comprehensive Help tab with tutorials</li></ul>"\
+    com.docker.desktop.extension.icon="https://raw.githubusercontent.com/ajeetraina/surrealdb-docker-extension/main/surrealdb.svg"
+
 
 COPY metadata.json .
 COPY surrealdb.svg .

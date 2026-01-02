@@ -21,7 +21,7 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/ajeetraina/surrealdb-docker-extension.git
+git clone https://github.com/Raveendiran-RR/surrealdb-docker-extension.git
 cd surrealdb-docker-extension
 ```
 
@@ -165,7 +165,7 @@ Now you can edit files in `ui/src/` and see changes immediately in Docker Deskto
 - Or modify `docker-compose.yaml` to use a different port:
   ```yaml
   ports:
-    - "8000:8000"  # Change 8001 to any available port
+    - "8001:8000"  # Change 8001 to any available port
   ```
 
 ### UI Not Loading
@@ -196,7 +196,7 @@ make update
 
 # Or manually
 docker build -t raveendiranrr/surrealdb-docker-extension:latest .
-docker extension update raveendiranrr/surrealdb-docker-extension:latest
+docker extension update raveendiranrrr/surrealdb-docker-extension:latest
 ```
 
 ## Uninstalling
@@ -256,7 +256,7 @@ make help
 If you encounter issues:
 
 1. Check the [README](README.md) for general information
-2. Review the [GitHub Issues](https://github.com/Raveendiran-RR/surrealdb-docker-extension/issues)
+2. Review the [GitHub Issues](https://github.com/ajeetraina/surrealdb-docker-extension/issues)
 3. Create a new issue with:
    - Steps to reproduce
    - Expected vs actual behavior
