@@ -1,6 +1,4 @@
 {
-  "version": "0.1.0",
-  "name": "SurrealDB",
   "icon": "surrealdb.svg",
   "ui": {
     "dashboard-tab": {
