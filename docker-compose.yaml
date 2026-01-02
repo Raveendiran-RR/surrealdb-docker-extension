@@ -14,5 +14,26 @@ services:
       com.docker.desktop.extension: "true"
       com.docker.desktop.extension.name: "SurrealDB"
 
+  demo-data-loader:
+    image: curlimages/curl:latest
+    depends_on:
+      - surrealdb
+    command: >
+      sh -c "sleep 10 &&
+             curl -L https://datasets.surrealdb.com/surreal-deal-store-mini.surql -o /tmp/demo.surql &&
+             curl -v -X POST -u 'root:root' -H 'surreal-ns: test' -H 'surreal-db: test' -H 'Accept: application/json' --data-binary @/tmp/demo.surql http://surrealdb:8000/import ||
+             echo 'Demo data import completed or already exists'"
+    restart: "no"
+
+  surrealist:
+    image: surrealdb/surrealist:latest
+    ports:
+      - "8001:8080"
+    depends_on:
+      - surrealdb
+    labels:
+      com.docker.desktop.extension: "true"
+      com.docker.desktop.extension.name: "Surrealist"
+
 volumes:
   surrealdb_data:

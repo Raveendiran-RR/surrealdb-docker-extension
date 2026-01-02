@@ -9,10 +9,8 @@ import {
   Alert,
 } from '@mui/material';
 import { createDockerDesktopClient } from '@docker/extension-api-client';
-import DatabaseManager from './components/DatabaseManager';
-import QueryEditor from './components/QueryEditor';
-import DataExplorer from './components/DataExplorer';
-import Settings from './components/Settings';
+import Surrealist from './components/Surrealist';
+import Help from './components/Help';
 
 const ddClient = createDockerDesktopClient();
 
@@ -77,46 +75,30 @@ export function App() {
   };
 
   return (
-    <Container maxWidth="xl">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h3" component="h1" gutterBottom>
-          SurrealDB Manager
-        </Typography>
-        <Typography variant="body1" color="text.secondary" gutterBottom>
-          Manage your SurrealDB databases directly from Docker Desktop
+    <Container maxWidth="xl" sx={{ py: 1 }}>
+      <Box sx={{ my: 1 }}>
+        <Typography variant="h6" component="h1" gutterBottom sx={{ fontSize: '1.1rem', mb: 1 }}>
+          SurrealDB Extension
         </Typography>
 
         {errorMessage && (
-          <Alert severity="warning" sx={{ mt: 2, mb: 2 }} onClose={() => setErrorMessage('')}>
+          <Alert severity="warning" sx={{ mb: 1, py: 0.5 }} onClose={() => setErrorMessage('')}>
             {errorMessage}
           </Alert>
         )}
 
-        <Paper sx={{ mt: 3 }}>
+        <Paper sx={{ mt: 1 }}>
           <Tabs value={tabValue} onChange={handleTabChange} aria-label="SurrealDB tabs">
-            <Tab label="Database Manager" />
-            <Tab label="Query Editor" disabled={connectionStatus !== 'connected'} />
-            <Tab label="Data Explorer" disabled={connectionStatus !== 'connected'} />
-            <Tab label="Settings" />
+            <Tab label="Surrealist" disabled={connectionStatus !== 'connected'} />
+            <Tab label="Help" />
           </Tabs>
 
           <TabPanel value={tabValue} index={0}>
-            <DatabaseManager 
-              onStatusChange={checkSurrealDBStatus}
-              connectionStatus={connectionStatus}
-            />
+            <Surrealist />
           </TabPanel>
 
           <TabPanel value={tabValue} index={1}>
-            <QueryEditor />
-          </TabPanel>
-
-          <TabPanel value={tabValue} index={2}>
-            <DataExplorer />
-          </TabPanel>
-
-          <TabPanel value={tabValue} index={3}>
-            <Settings />
+            <Help />
           </TabPanel>
         </Paper>
       </Box>

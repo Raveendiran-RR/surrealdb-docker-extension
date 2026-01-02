@@ -1,8 +1,8 @@
 .PHONY: help build install update remove clean dev build-extension push-extension
 
-EXTENSION_NAME = ajeetraina777/surrealdb-docker-extension
+EXTENSION_NAME = raveendiranrr/surrealdb-docker-extension
 VERSION = 1.0.0
-DOCKER_HUB_USERNAME = ajeetraina777
+DOCKER_HUB_USERNAME = raveendiranrr
 
 help: ## Show this help message
 	@echo 'Usage: make [target]'

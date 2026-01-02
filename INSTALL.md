@@ -32,7 +32,7 @@ cd surrealdb-docker-extension
 make build
 
 # Or using Docker directly
-docker build -t ajeetraina/surrealdb-docker-extension:latest .
+docker build -t raveendiranrr/surrealdb-docker-extension:latest .
 ```
 
 This will:
@@ -47,7 +47,7 @@ This will:
 make install
 
 # Or using Docker directly
-docker extension install ajeetraina/surrealdb-docker-extension:latest
+docker extension install raveendiranrr/surrealdb-docker-extension:latest
 ```
 
 ### 4. Verify Installation
@@ -128,8 +128,8 @@ In another terminal:
 make dev
 
 # Or manually
-docker extension dev debug ajeetraina/surrealdb-docker-extension
-docker extension dev ui-source ajeetraina/surrealdb-docker-extension http://localhost:3000
+docker extension dev debug raveendiranrr/surrealdb-docker-extension
+docker extension dev ui-source raveendiranrr/surrealdb-docker-extension http://localhost:3000
 ```
 
 ### 3. Make Changes
@@ -152,7 +152,7 @@ Now you can edit files in `ui/src/` and see changes immediately in Docker Deskto
 **Issue**: `docker extension install` fails
 
 **Solutions**:
-- Remove any existing version: `docker extension rm ajeetraina/surrealdb-docker-extension`
+- Remove any existing version: `docker extension rm raveendiranrr/surrealdb-docker-extension`
 - Restart Docker Desktop
 - Check Docker Desktop Extensions are enabled in Settings → Extensions
 
@@ -165,7 +165,7 @@ Now you can edit files in `ui/src/` and see changes immediately in Docker Deskto
 - Or modify `docker-compose.yaml` to use a different port:
   ```yaml
   ports:
-    - "8001:8000"  # Change 8001 to any available port
+    - "8000:8000"  # Change 8001 to any available port
   ```
 
 ### UI Not Loading
@@ -195,8 +195,8 @@ After making changes:
 make update
 
 # Or manually
-docker build -t ajeetraina/surrealdb-docker-extension:latest .
-docker extension update ajeetraina/surrealdb-docker-extension:latest
+docker build -t raveendiranrr/surrealdb-docker-extension:latest .
+docker extension update raveendiranrr/surrealdb-docker-extension:latest
 ```
 
 ## Uninstalling
@@ -208,7 +208,7 @@ To remove the extension:
 make remove
 
 # Or using Docker directly
-docker extension rm ajeetraina/surrealdb-docker-extension
+docker extension rm raveendiranrr/surrealdb-docker-extension
 ```
 
 ## Testing Checklist
@@ -256,7 +256,7 @@ make help
 If you encounter issues:
 
 1. Check the [README](README.md) for general information
-2. Review the [GitHub Issues](https://github.com/ajeetraina/surrealdb-docker-extension/issues)
+2. Review the [GitHub Issues](https://github.com/Raveendiran-RR/surrealdb-docker-extension/issues)
 3. Create a new issue with:
    - Steps to reproduce
    - Expected vs actual behavior

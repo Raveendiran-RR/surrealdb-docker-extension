@@ -15,9 +15,9 @@ RUN npm run build
 FROM alpine:3.18
 LABEL org.opencontainers.image.title="SurrealDB" \
     org.opencontainers.image.description="A Docker Desktop extension for managing SurrealDB databases" \
-    org.opencontainers.image.vendor="Ajeet Raina" \
+    org.opencontainers.image.vendor="Raveendiran RR" \
     com.docker.desktop.extension.api.version="0.3.3" \
-    com.docker.desktop.extension.icon="https://raw.githubusercontent.com/ajeetraina/surrealdb-docker-extension/main/surrealdb.svg"
+    com.docker.desktop.extension.icon="https://raw.githubusercontent.com/Raveendiran-RR/surrealdb-docker-extension/main/surrealdb.svg"
 
 COPY metadata.json .
 COPY surrealdb.svg .
