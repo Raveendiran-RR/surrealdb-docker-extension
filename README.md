@@ -53,7 +53,7 @@ graph TB
 
 1. Clone this repository:
    ```bash
-   git clone https://github.com/ajeetraina777/surrealdb-docker-extension.git
+   git clone https://github.com/raveendiranrr/surrealdb-docker-extension.git
    cd surrealdb-docker-extension
    ```
 
