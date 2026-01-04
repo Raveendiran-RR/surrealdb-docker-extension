@@ -2,7 +2,8 @@
 
 A Docker Desktop extension created by the community for managing SurrealDB databases.
 
-<img width="1908" height="1002" alt="image" src="https://github.com/user-attachments/assets/3e9ca240-717e-483d-9e69-21c8743207da" />
+<img width="2032" height="1098" alt="image" src="https://github.com/user-attachments/assets/63398a81-d2f0-435e-a5c7-6f6ad09024d5" />
+
 
 
 
