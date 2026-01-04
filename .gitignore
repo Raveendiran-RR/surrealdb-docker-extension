@@ -1,5 +1,5 @@
 stash
-# .claude
+.claude
 .vscode
-,cursor
+.cursor
 .DS_Store

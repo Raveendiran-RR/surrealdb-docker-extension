@@ -1,5 +1,6 @@
 services:
   surrealdb:
+    container_name: surrealdb
     image: surrealdb/surrealdb:latest
     command: start --log trace --user root --pass root
     ports:
@@ -15,6 +16,7 @@ services:
       com.docker.desktop.extension.name: "SurrealDB"
 
   surrealist:
+    container_name: surrealist
     image: surrealdb/surrealist:latest
     ports:
       - "8001:8080"

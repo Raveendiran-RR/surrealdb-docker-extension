@@ -165,7 +165,7 @@ Now you can edit files in `ui/src/` and see changes immediately in Docker Deskto
 - Or modify `docker-compose.yaml` to use a different port:
   ```yaml
   ports:
-    - "8001:8000"  # Change 8001 to any available port
+    - "8000:8000"  # Change 8000 to any available port
   ```
 
 ### UI Not Loading

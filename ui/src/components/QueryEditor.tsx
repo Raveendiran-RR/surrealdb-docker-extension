@@ -34,11 +34,11 @@ const QueryEditor: React.FC = () => {
       const settings = localStorage.getItem('surrealdb-settings');
       const config = settings ? JSON.parse(settings) : {
         host: 'localhost',
-        port: '8001',
+        port: '8000',
         username: 'root',
         password: 'root',
-        namespace: 'test',
-        database: 'test',
+        namespace: null,
+        database: null,
       };
 
       // Sign in to get token
@@ -66,7 +66,7 @@ const QueryEditor: React.FC = () => {
       console.log('Connected to SurrealDB');
     } catch (err: any) {
       console.error('Connection error:', err);
-      setError(`Failed to connect: ${err.message || 'Connection refused. Make sure SurrealDB is running on port 8001.'}`);
+      setError(`Failed to connect: ${err.message || 'Connection refused. Make sure SurrealDB is running on port 8000.'}`);
       setConnected(false);
     }
   };
@@ -100,9 +100,9 @@ const QueryEditor: React.FC = () => {
       const settings = localStorage.getItem('surrealdb-settings');
       const config = settings ? JSON.parse(settings) : {
         host: 'localhost',
-        port: '8001',
-        namespace: 'test',
-        database: 'test',
+        port: '8000',
+        namespace: null,
+        database: null,
       };
 
       const response = await fetch(`http://${config.host}:${config.port}/sql`, {
@@ -170,7 +170,7 @@ const QueryEditor: React.FC = () => {
 
       {!connected && (
         <Alert severity="warning" sx={{ mb: 2 }}>
-          Not connected to SurrealDB. Make sure the database is running on port 8001.
+          Not connected to SurrealDB. Make sure the database is running on port 8000.
         </Alert>
       )}
 
