@@ -1,5 +1,3 @@
-# syntax=docker/dockerfile:1
-
 # Build the UI
 FROM node:20-alpine AS client-builder  
 WORKDIR /ui
