@@ -62,16 +62,8 @@ const DatabaseManager: React.FC<DatabaseManagerProps> = ({ onStatusChange, conne
     setMessage(null);
 
     try {
-      const result = await ddClient.extension.vm?.cli.exec('docker-compose', [
-        '-f',
-        '/docker-compose.yaml',
-        'up',
-        '-d'
-      ]);
-      
-      if (result?.stderr) {
-        console.error('Docker compose stderr:', result.stderr);
-      }
+      await ddClient.docker.cli.exec('start', ['surrealdb']);
+      await ddClient.docker.cli.exec('start', ['surrealist']);
       
       setMessage({ type: 'success', text: 'SurrealDB started successfully!' });
       setTimeout(() => {
@@ -92,14 +84,26 @@ const DatabaseManager: React.FC<DatabaseManagerProps> = ({ onStatusChange, conne
     setMessage(null);
 
     try {
-      const result = await ddClient.extension.vm?.cli.exec('docker-compose', [
-        '-f',
-        '/docker-compose.yaml',
-        'down'
-      ]);
-      
-      if (result?.stderr) {
-        console.error('Docker compose stderr:', result.stderr);
+      // Try using compose down first
+      try {
+        await ddClient.extension.vm?.service?.post('/compose/down', {});
+      } catch (composeError) {
+        console.log('Compose down failed, using docker CLI:', composeError);
+      }
+
+      // Ensure containers are stopped and removed
+      try {
+        await ddClient.docker.cli.exec('stop', ['surrealdb']);
+        // await ddClient.docker.cli.exec('rm', ['surrealdb']);
+      } catch (e) {
+        console.log('SurrealDB container cleanup:', e);
+      }
+
+      try {
+        await ddClient.docker.cli.exec('stop', ['surrealist']);
+        // await ddClient.docker.cli.exec('rm', ['surrealist']);
+      } catch (e) {
+        console.log('Surrealist container cleanup:', e);
       }
       
       setMessage({ type: 'success', text: 'SurrealDB stopped successfully!' });
@@ -121,15 +125,8 @@ const DatabaseManager: React.FC<DatabaseManagerProps> = ({ onStatusChange, conne
     setMessage(null);
 
     try {
-      const result = await ddClient.extension.vm?.cli.exec('docker-compose', [
-        '-f',
-        '/docker-compose.yaml',
-        'restart'
-      ]);
-      
-      if (result?.stderr) {
-        console.error('Docker compose stderr:', result.stderr);
-      }
+      await ddClient.docker.cli.exec('restart', ['surrealdb']);
+      await ddClient.docker.cli.exec('restart', ['surrealist']);
       
       setMessage({ type: 'success', text: 'SurrealDB restarted successfully!' });
       setTimeout(() => {
@@ -176,7 +173,7 @@ const DatabaseManager: React.FC<DatabaseManagerProps> = ({ onStatusChange, conne
                     Image: surrealdb/surrealdb:latest
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Port: 8001 (Host) → 8000 (Container)
+                    Port: 8000 (Host) → 8000 (Container)
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
                     Default Credentials: root/root
@@ -228,15 +225,15 @@ const DatabaseManager: React.FC<DatabaseManagerProps> = ({ onStatusChange, conne
               </Typography>
 
               <Typography variant="body2" paragraph>
-                2. Access SurrealDB at <code>http://localhost:8001</code>
+                2. Access SurrealDB at <code>http://localhost:8000</code>
               </Typography>
 
               <Typography variant="body2" paragraph>
-                3. Use the Query Editor tab to run SurrealQL queries
+                3. Access Surrealist UI at <code>http://localhost:8001</code>
               </Typography>
 
               <Typography variant="body2" paragraph>
-                4. Explore your data in the Data Explorer tab
+                4. Explore your data and query in the Surrealist tab
               </Typography>
 
               <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>

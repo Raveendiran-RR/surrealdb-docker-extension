@@ -20,11 +20,11 @@ interface SettingsProps {
 const Settings: React.FC<SettingsProps> = ({ onSave }) => {
   const [settings, setSettings] = useState({
     host: 'localhost',
-    port: '8001',
+    port: '8000',
     username: 'root',
     password: 'root',
-    namespace: 'test',
-    database: 'test',
+    namespace: null,
+    database: null,
     autoConnect: true,
     strictMode: false,
   });
@@ -83,7 +83,7 @@ const Settings: React.FC<SettingsProps> = ({ onSave }) => {
                 label="Port"
                 value={settings.port}
                 onChange={handleChange('port')}
-                helperText="Server port (default: 8001)"
+                helperText="Server port (default: 8000)"
               />
             </Grid>
 
