@@ -1,13 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
-  <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#6366F1;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <circle cx="100" cy="100" r="90" fill="url(#grad1)" />
-  <path d="M 70 80 Q 100 60 130 80" stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <path d="M 70 100 Q 100 80 130 100" stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <path d="M 70 120 Q 100 100 130 120" stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/>
-  <circle cx="100" cy="100" r="20" fill="white" opacity="0.3"/>
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<mask id="mask0_2004_8" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="14" y="0" width="172" height="200">
+<path d="M185.778 0H14.2222V200H185.778V0Z" fill="white"/>
+</mask>
+<g mask="url(#mask0_2004_8)">
+<path d="M166.702 121.053L71.4073 68.4151L99.9999 52.6176L147.648 78.9876V68.4151L99.9999 42.1064C92.9131 46.0251 58.6633 64.9453 52.3524 68.4151C58.2139 71.6604 119.77 105.643 157.185 126.299V136.83C152.1 139.647 99.9999 168.405 99.9999 168.405C85.7444 160.547 57.0497 144.709 42.8148 136.83V105.256L99.9999 136.83L109.538 131.564L33.2771 89.4784V142.116L99.9999 178.937C106.576 175.304 161.842 144.79 166.702 142.096V121.053ZM99.9999 0L14.2222 47.3722V152.628L99.9999 200L185.778 152.648V47.3722L99.9999 0ZM176.22 147.362L99.9999 189.468L23.7599 147.362V52.638L99.9999 10.5317L176.24 52.638L176.22 147.362ZM33.2771 57.8836V78.9469L128.572 131.585L99.9795 147.382L52.3319 121.012V131.585L99.9795 157.894C107.066 153.975 141.316 135.055 147.627 131.585C141.766 128.34 80.2302 94.3567 42.8148 73.6809V63.1493C47.9002 60.3327 99.9999 31.5747 99.9999 31.5747C114.235 39.4531 142.93 55.2913 157.185 63.1493V94.724L99.9999 63.1493L90.4622 68.4151L166.702 110.522V57.8836L99.9999 21.043C93.4033 24.6964 38.1582 55.2098 33.2771 57.8836Z" fill="url(#paint0_linear_2004_8)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_2004_8" x1="55.7524" y1="23.41" x2="144.171" y2="176.654" gradientUnits="userSpaceOnUse">
+<stop stop-color="#FF00A0"/>
+<stop offset="1" stop-color="#9600FF"/>
+</linearGradient>
+</defs>
 </svg>
